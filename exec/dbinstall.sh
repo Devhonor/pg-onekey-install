@@ -96,7 +96,7 @@ function compile_process(){
     fi
 
     #begining compile
-    make -j$(nproc) world >>${COMPILE_ERROR} 2>&1 >>${SUCCESS_LOG}
+    make -j$(cpucnt) world >>${COMPILE_ERROR} 2>&1 >>${SUCCESS_LOG}
     c_errorcnt=$(egrep -wi "error" ${COMPILE_ERROR} | wc -l)
     if [[ "${c_errorcnt}" -ge 1 ]];then
         print_error_log "ERROR:Please checking more information from log ${COMPILE_ERROR}"
@@ -104,7 +104,7 @@ function compile_process(){
     fi
 
     #beging install
-    make -j$(nproc) install-world >>${COMPILE_ERROR} 2>&1 >>${SUCCESS_LOG}
+    make -j$(cpucnt) install-world >>${COMPILE_ERROR} 2>&1 >>${SUCCESS_LOG}
 
     print_log "   Compiling installation end"
 }
