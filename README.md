@@ -6,7 +6,7 @@ Completing configuration of yum repository
 ***
 #使用说明(using manual)
 -  当前自动安装脚本适用于红帽家族 8.9 系统，其它版本未做测试，请根据环境自己测试
--  The current auto-install scripts are compatible with Red Hat family OS version 7.9. Other versions have not been verified, so please test it when using on those.
+-  The current auto-install scripts are compatible with Red Hat family OS version 8.9. Other versions have not been verified, so please test it when using on those.
 
 ####配置文件(configuration files)
 -  配置文件包括两个，一个日志配置文件，一个环境配置文件，日志配置文件不用做任何改动，环境配置文件需要手动配置。
@@ -67,7 +67,7 @@ SUPERADMIN= #if the value is empty,default postgres
 
 #Define auth method
 #数据库认证方式
-AUTHMETHOD=trust #if the value is empty,default trust
+AUTHMETHOD= #if the value is empty,default trust
 
 #Define database server encode
 #数据库服务器编码
@@ -75,11 +75,11 @@ SERVERENCODE= #if the value is empty,default utf8
 
 #Define page size 
 #数据块页面大小(1|2|4|8|16|32)
-PAGE_SIZE=4 #if the value is empty,default 8, the unit is kb
+PAGE_SIZE= #if the value is empty,default 8, the unit is kb
 
 #Define running port
 #数据库绑定端口
-PGPORT=5432
+PGPORT= #if the value is empty,default 5432
 
 ```
 
@@ -91,7 +91,6 @@ PGPORT=5432
 
 ```bash
 [root@server bin]# sh install.sh install
-[root@rocky8server1 bin]# sh install.sh install
 [2024-09-14 PM 16:40:28]  ########################### [PostgreSQL Database] Begin install ########################### 
 [2024-09-14 PM 16:40:28]  1. Configuring hostname and dns begin 
 [2024-09-14 PM 16:40:29]        hostname configuration successfully! 
@@ -153,7 +152,7 @@ Please confirm postgres os user's password: postgres
 [2024-09-14 PM 16:40:46]        The data directory already exists
 [2024-09-14 PM 16:40:46]     Configuration install directory end 
 [2024-09-14 PM 16:40:46]  10.Compiling installation begin 
-  [2024-09-14 PM 16:43:40]      Compiling installation end 
+[2024-09-14 PM 16:43:40]      Compiling installation end 
 [2024-09-14 PM 16:43:40]  11.Configuring postgres user environment begin 
 [2024-09-14 PM 16:43:41]      Configuring postgres user environment end 
 [2024-09-14 PM 16:43:41]  12.Initialize PostgreSQL database cluster begin 
@@ -167,7 +166,7 @@ Running cost time: 192.53 seconds,Sat Sep 14 16:43:41 CST 2024
 
 4. 验证(Verifying)
 ```
-[root@rocky8server1 bin]# su - postgres
+[root@server bin]# su - postgres
 Last login: Sat Sep 14 16:43:41 CST 2024 on pts/1
 [postgres@server ~]$ psql
 psql (17rc1)
