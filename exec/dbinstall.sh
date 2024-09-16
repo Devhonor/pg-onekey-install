@@ -71,10 +71,10 @@ function compile_process(){
     else
         PG_HOME=${PG_HOME}
     fi
-    if [[ "${PG_PORT}" == "" ]];then
-        PG_PORT=5432
+    if [[ "${PGPORT}" == "" ]];then
+        PGPORT=5432
     else
-        PG_PORT=${PG_PORT}
+        PGPORT=${PG_PORT}
     fi
 
     PARAMETERS="--prefix=${PG_HOME} --with-pgport=${PGPORT} --with-blocksize=${PAGE_SIZE} --with-openssl --with-readline --with-lz4 --with-zlib --with-ldap --with-pam  --with-perl --with-tcl --with-python --with-libxml --with-libxslt --with-gssapi --with-uuid=e2fs --with-selinux --with-llvm"
