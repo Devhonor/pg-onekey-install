@@ -74,7 +74,7 @@ function compile_process(){
     if [[ "${PGPORT}" == "" ]];then
         PGPORT=5432
     else
-        PGPORT=${PG_PORT}
+        PGPORT=${PGPORT}
     fi
 
     PARAMETERS="--prefix=${PG_HOME} --with-pgport=${PGPORT} --with-blocksize=${PAGE_SIZE} --with-openssl --with-readline --with-lz4 --with-zlib --with-ldap --with-pam  --with-perl --with-tcl --with-python --with-libxml --with-libxslt --with-gssapi --with-uuid=e2fs --with-selinux --with-llvm"
@@ -96,7 +96,7 @@ function compile_process(){
     fi
 
     #begining compile
-    make -j$(cpucnt) world >>${COMPILE_ERROR} 2>&1 >>${SUCCESS_LOG}
+    make -j${cpucnt} world >>${COMPILE_ERROR} 2>&1 >>${SUCCESS_LOG}
     c_errorcnt=$(egrep -wi "error" ${COMPILE_ERROR} | wc -l)
     if [[ "${c_errorcnt}" -ge 1 ]];then
         print_error_log "ERROR:Please checking more information from log ${COMPILE_ERROR}"
@@ -104,7 +104,7 @@ function compile_process(){
     fi
 
     #beging install
-    make -j$(cpucnt) install-world >>${COMPILE_ERROR} 2>&1 >>${SUCCESS_LOG}
+    make -j${cpucnt} install-world >>${COMPILE_ERROR} 2>&1 >>${SUCCESS_LOG}
 
     print_log "   Compiling installation end"
 }
